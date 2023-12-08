@@ -41,7 +41,7 @@ function part1(input: string[]): number {
                 successfullTimesMS.push(distanceTravelled);
             }
         }
-        
+
         // if we multiply when total = 0, we get 0.
         total == 0 ? total = successfullTimesMS.length : total *= successfullTimesMS.length;
     });
@@ -49,20 +49,42 @@ function part1(input: string[]): number {
     return total;
 }
 
-function part2(): number {
-    return 0;
+function part2(input: string[]): number {
+    let total: number = 0;
+
+    const raceTime = 46828479; // TODO get the digits
+    const distanceToBeat = 347152214061471; // TODO get the digits
+
+    
+    let successfullTimesMS: number[] = [];
+    
+    for (let buttonHeldMS = 0; buttonHeldMS < raceTime; buttonHeldMS++) {
+        const distanceTravelled = recordIsBeaten(distanceToBeat, buttonHeldMS, raceTime); // undefined if not beating record.
+        if (distanceTravelled) {
+            // add the successfull distancetravelled to an list... maybe we need this later?? maybe not..
+            total++;
+        }
+    }
+
+        // if we multiply when total = 0, we get 0.
+        
+        
+    
+
+    return total;
 }
 
 
 function main() {
-    const file: string = fs.readFileSync("./input/d6.txt", 'utf-8');
+    const file: string = fs.readFileSync("./input/sample6.txt", 'utf-8');
     let rows = file.split("\n");
 
     let solution1 = part1(rows);
-    let solution2 = part2();
+    let solution2 = part2(rows);
 
 
     console.log("Solution for day 6, part 1: ", solution1);
+    console.log("Solution for day 6, part 2: ", solution2);
 
 }
 
